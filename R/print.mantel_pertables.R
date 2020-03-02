@@ -1,4 +1,4 @@
-`print.mantel.pertables` <-
+`print.mantel_pertables` <-
 function (x, digits = max(3, getOption("digits") - 3), ...) 
 {
     cat("Mantel statistic based on", x$mantel$mantel.raw$method, 

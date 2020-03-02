@@ -1,4 +1,4 @@
-`print.adonis.pertables` <-
+`print.adonis_pertables` <-
 function(x,...) {
 m <- x$raw
 n <- x$simulation$R2.quant

@@ -1,8 +1,8 @@
-`mantel.pertables` <-
+`mantel_pertables` <-
 function (pertab, env, dist.method = "bray", binary = FALSE, 
     cor.method = "pearson", permutations = 100) 
 {
-    require(vegan)
+    #require(vegan)
     mantel.test <- function(z, env) {
         mantel.st <- mantel(vegdist(z, method = dist.method, 
             binary = binary), dist(env), method = cor.method, 
@@ -30,7 +30,8 @@ function (pertab, env, dist.method = "bray", binary = FALSE,
     mantel.output <- list(mantel = list(mantel.raw = mantel.raw, 
         ptax = ptax), simulation = list(results = results, mantel.quant = mantel.quant, 
         vegdist = vdper), raw = list(vegdist = vd, env.dist = env.dist))
-    class(mantel.output) <- c("mantel.pertables", class(mantel.output))
+    #class(mantel.output) <- c("mantel.pertables", class(mantel.output))
+        class(mantel.output) <- c("mantel_pertables", class(mantel.output))
     return(mantel.output)
 }
 

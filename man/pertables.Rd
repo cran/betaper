@@ -1,6 +1,6 @@
 \name{pertables}
-\Rdversion{1.1}
 \alias{pertables}
+\alias{pertables.p2}
 \alias{print.pertables}
 
 \title{
@@ -11,6 +11,7 @@ Function to incorporate the effect of taxonomic uncertainty on multivariate anal
 }
 \usage{
 pertables(data, index = NULL, nsim = 100)
+pertables.p2(data, index = NULL, nsim = 100, ncl=2)
 }
 
 \arguments{
@@ -25,6 +26,9 @@ List of additional parameters to determine the level at which species have been 
   \item{nsim}{
 Number of simulations of species' identities, i.e., number of data tables to simulate.
 }
+  \item{ncl}{
+Number of clusters for parallel simulation.
+}
 }
 \details{
 The procedure is implemented in two sequential steps:
@@ -33,6 +37,8 @@ Step 1. Morphospecies identified only to genus are randomly re-assigned with the
 
 
 Step 2. Step 1 is iterated \emph{nsim} times. As a result, \emph{nsim} matrices are obtained, all of which contain the same number of sites but variable number of species depending on the resulting re-assignment of morphospecies, The process can be time-consuming if community data matrices are large.
+
+Function \code{pertables.p2} implements a parallelized version which considerably reduces computation time.
 
 }
 \value{
@@ -44,27 +50,43 @@ The function return a list of class \code{pertables} with the following componen
 
 }
 \references{
-Cayuela, L., De la Cruz, M. and Ruokolainen, K. 
-A method to incorporate the effect of taxonomic uncertainty on multivariate analyses of ecological data (\emph{Ecography, submitted})
+Cayuela, L., De la Cruz, M. and Ruokolainen, K. (2011). A method to incorporate the effect of taxonomic uncertainty on multivariate analyses of ecological data. \emph{Ecography}, 34: 94-102. \url{http://dx.doi.org/10.1111/j.1600-0587.2009.05899.x}.   
 }
 \author{
 Luis Cayuela and Marcelino de la Cruz
 }
 
 \examples{
-  \dontrun{
-require(vegan)
 
 data(Amazonia)
 data(soils)
 
-# Define a new index that includes the terms used in the \code{Amazonia} dataset to define undetermined taxa at different taxonomic levels
+# Define a new index that includes the terms used in the \code{Amazonia} dataset to define
+# undetermined taxa at different taxonomic levels
+
 index.Amazon <- c(paste("sp.", rep(1:20), sep=""), "Indet.", "indet.")
 
-#Generate a pertables object (i.e. a list of biological data tables simulated from taxonomic uncertainty)
-Amazonia100 <- pertables(Amazonia, index=index.Amazon, nsim=100)
+#Generate a pertables object (i.e. a list of biological data tables simulated from taxonomic
+# uncertainty)
  
+ \dontrun{
+# compare prformance of pertables and pertables.p2
+nsim <-100
+ncl <-2
+gc()
+t0<- Sys.time()
+ Amazonia100<- pertables(Amazonia, index=index.Amazon, nsim=nsim)
+ Sys.time()-t0
+gc()
+t0<- Sys.time()
+ Amazonia100.p2<- pertables.p2(Amazonia, index=index.Amazon, nsim=nsim, ncl=ncl)
+ Sys.time()-t0
 }
+# Example for Rcheck
+
+Amazonia_subset <- Amazonia[1:50,]
+Amazonia4.p2<- pertables.p2(Amazonia_subset, index=index.Amazon, nsim=4, ncl=2)
+
 }
 \keyword{ multivariate }
 

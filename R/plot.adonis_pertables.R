@@ -1,4 +1,4 @@
-`plot.adonis.pertables` <-
+`plot.adonis_pertables` <-
 function(x, ...) {
 n <- dim(x$simulation$p.quant)[2]
 layout(matrix(c(1:(n*2)), n, 2))

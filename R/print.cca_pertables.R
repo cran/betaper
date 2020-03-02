@@ -1,4 +1,4 @@
-`print.cca.pertables` <-
+`print.cca_pertables` <-
 function (x, ...) 
 {
     n <- x$simulation$cca.quant[, -3]

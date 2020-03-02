@@ -1,4 +1,4 @@
-`plot.mantel.pertables` <-
+`plot.mantel_pertables` <-
 function (x, xlab = "Environmental distance", ylab = "Sorensen's similarity index", 
     pch = 19, ...) 
 {

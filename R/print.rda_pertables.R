@@ -1,4 +1,4 @@
-`print.rda.pertables` <-
+`print.rda_pertables` <-
 function (x, ...) 
 {
     n <- x$simulation$rda.quant[, -3]

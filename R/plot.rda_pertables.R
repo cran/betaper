@@ -1,7 +1,7 @@
-`plot.rda.pertables` <-
+`plot.rda_pertables` <-
 function (x, pch = 18, ...) 
 {
-    require(vegan)
+    #require(vegan)
     sites.raw <- scores(x$raw$rda.raw, display = "sites")
     biplot.raw <- scores(x$raw$rda.raw, display = "bp")
     sign.axis1 <- ifelse(sites.raw[, 1][abs(sites.raw[, 1]) == 

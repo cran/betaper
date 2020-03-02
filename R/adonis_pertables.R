@@ -1,7 +1,7 @@
-`adonis.pertables` <-
+`adonis_pertables` <-
 function(formula=X~., data, permutations = 5, method = "bray"){
 
-require(vegan)
+#require(vegan)
         
 fmla<-fmla0<- formula
 fmla[[2]]<-substitute(X)
@@ -39,7 +39,8 @@ adonis.raw$aov.tab$Prtax <- c(ptax, NA, NA)
 names(adonis.raw$aov.tab)[7] <-"Pr(tax)"
 adonis.raw$call <- match.call()
 adonis.output<- list(raw=adonis.raw, simulation=list(F=F, R2 = R2, pvalue = p, R2.quant = R2.quant, p.quant = p.quant))
-class(adonis.output) <- c("adonis.pertables",class(adonis.output))
+#class(adonis.output) <- c("adonis.pertables",class(adonis.output))
+class(adonis.output) <- c("adonis_pertables",class(adonis.output))
 return(adonis.output)
 }
 

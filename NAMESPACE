@@ -1,11 +1,29 @@
-# Default NAMESPACE created by R
-# Remove the previous line if you edit this file
 
-# Export all names
-exportPattern(".")
+# Export regular functions
+export("pertables", "pertables.p2", "adonis_pertables", "cca_pertables", "mantel_pertables", "rda_pertables")
 
 # Import all packages listed as Imports or Depends
-import(
-  vegan,
-  ellipse
-)
+# ToDo: "importFrom" only required functions 
+import(vegan)
+importFrom("parallel", "makeCluster", "clusterExport", "parLapply",
+         "stopCluster")
+
+# Import global functions
+  importFrom("graphics", "abline", "arrows", "hist", "layout", "lines",
+             "mtext", "par", "plot", "points", "text")
+  importFrom("stats", "anova", "density", "dist", "lowess", "median",
+             "quantile")
+
+	     
+## Registration of S3 methods
+import(stats)
+import(graphics)
+S3method(plot, adonis_pertables)
+S3method(plot, cca_pertables)
+S3method(plot, mantel_pertables)
+S3method(plot, rda_pertables)
+S3method(print, adonis_pertables)
+S3method(print, cca_pertables)
+S3method(print, mantel_pertables)
+S3method(print, rda_pertables)
+S3method(print, pertables)

@@ -1,5 +1,5 @@
 pertables.p2 <-
-function (data, index = NULL, nsim = 100, ncl=2) 
+function (data, index = NULL, nsim = 100, ncl=2, iseed=NULL) 
 {
     index0 <- c("Indet", "indet", "", " ", as.character(c(1:100)), 
         "sp", paste("sp", as.character(c(1:100)), sep = ""), 
@@ -65,6 +65,7 @@ function (data, index = NULL, nsim = 100, ncl=2)
 	 # define environment created by the function
 	e<-environment()
         cl <- makeCluster(ncl)
+	if(is.numeric(iseed)) clusterSetRNGStream(cl, iseed = iseed)  ##-24-11-2020 to avoid errors in small examples--
 	clusterExport(cl, c("simfun", "data","cond"), envir=e)
 	results<-parLapply(cl, 1:nsim, simfun, data=data, cond=cond)
 	stopCluster(cl)

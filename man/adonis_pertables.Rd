@@ -66,9 +66,8 @@ plot(Amazonia.adonis)
 }
 # Fast example for Rcheck
 
-Amazonia_subset <- Amazonia[1:50,]
-Amazonia4.p2<- pertables.p2(Amazonia_subset, index=index.Amazon, nsim=4, ncl=2)
-
+Amazonia4.p2 <- pertables.p2(Amazonia[1:50,], index=index.Amazon, nsim=4, ncl=2, iseed=4)
+set.seed(2)
 Amazonia.adonis <- adonis_pertables(Amazonia4.p2  ~ Ca + K + Mg + Na, data=soils)
 
 Amazonia.adonis

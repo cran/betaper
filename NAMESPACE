@@ -6,7 +6,7 @@ export("pertables", "pertables.p2", "adonis_pertables", "cca_pertables", "mantel
 # ToDo: "importFrom" only required functions 
 import(vegan)
 importFrom("parallel", "makeCluster", "clusterExport", "parLapply",
-         "stopCluster")
+         "stopCluster", "clusterSetRNGStream")
 
 # Import global functions
   importFrom("graphics", "abline", "arrows", "hist", "layout", "lines",

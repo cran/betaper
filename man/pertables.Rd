@@ -11,7 +11,7 @@ Function to incorporate the effect of taxonomic uncertainty on multivariate anal
 }
 \usage{
 pertables(data, index = NULL, nsim = 100)
-pertables.p2(data, index = NULL, nsim = 100, ncl=2)
+pertables.p2(data, index = NULL, nsim = 100, ncl=2, iseed = NULL)
 }
 
 \arguments{
@@ -28,6 +28,9 @@ Number of simulations of species' identities, i.e., number of data tables to sim
 }
   \item{ncl}{
 Number of clusters for parallel simulation.
+}
+\item{iseed}{
+An integer to be supplied to clusterSetRNGStream, or NULL not to set reproducible seeds.
 }
 }
 \details{
@@ -84,8 +87,7 @@ t0<- Sys.time()
 }
 # Example for Rcheck
 
-Amazonia_subset <- Amazonia[1:50,]
-Amazonia4.p2<- pertables.p2(Amazonia_subset, index=index.Amazon, nsim=4, ncl=2)
+Amazonia4.p2<- pertables.p2(Amazonia, index=index.Amazon, nsim=4, ncl=2)
 
 }
 \keyword{ multivariate }

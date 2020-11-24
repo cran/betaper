@@ -85,9 +85,8 @@ plot(Amazonia.rda)
 
 # Fast example for Rcheck
 
-Amazonia_subset <- Amazonia[1:50,]
-Amazonia4.p2<- pertables.p2(Amazonia_subset, index=index.Amazon, nsim=4, ncl=2)
-
+Amazonia4.p2 <- pertables.p2(Amazonia[1:50,], index=index.Amazon, nsim=4, ncl=2, iseed=4)
+set.seed(2)
 Amazonia.rda <- rda_pertables(Amazonia4.p2 ~., data=soils)
 
 Amazonia.rda

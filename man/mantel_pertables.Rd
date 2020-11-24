@@ -97,9 +97,8 @@ plot(Amazonia.mantel)
 }
 # Fast example for Rcheck
 
-Amazonia_subset <- Amazonia[1:50,]
-Amazonia4.p2<- pertables.p2(Amazonia_subset, index=index.Amazon, nsim=4, ncl=2)
-
+Amazonia4.p2 <- pertables.p2(Amazonia[1:50,], index=index.Amazon, nsim=4, ncl=2, iseed=4)
+set.seed(2)
 Amazonia.mantel <- mantel_pertables(pertab=Amazonia4.p2, env=soils, dist.method = "bray")
 
 Amazonia.mantel

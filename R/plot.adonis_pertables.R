@@ -1,6 +1,6 @@
 `plot.adonis_pertables` <-
 function(x, ...) {
-n <- dim(x$simulation$p.quant)[2]
+n <- ifelse(is.null(dim(x$simulation$p.quant)[2]), 1, dim(x$simulation$p.quant)[2])
 layout(matrix(c(1:(n*2)), n, 2))
 for(i in 1:n){
 par(mar=c(4, 4, 3, 1))

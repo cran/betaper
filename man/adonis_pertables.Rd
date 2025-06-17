@@ -10,7 +10,7 @@ Function to assess the efects of taxonomic uncertainty on permutational multivar
 This function asses the effects of taxonomic uncertainty on the R2 coefficients and the p-values of a permutational multivariate analysis of variance using distance matrices.
 }
 \usage{
-adonis_pertables(formula = X ~ ., data, permutations = 5, method = "bray")
+adonis_pertables(formula = X ~ ., data, permutations = 5, method = "bray", by=NULL)
 \method{plot}{adonis_pertables}(x, \dots)
 }
 
@@ -19,6 +19,7 @@ adonis_pertables(formula = X ~ ., data, permutations = 5, method = "bray")
   \item{data}{The data frame from which 'A', 'B', and 'C' would be drawn.}
   \item{permutations}{Number of replicate permutations used for the hypothesis tests (F tests) for each simulated community data matrices obtained with \code{pertables}.}
   \item{method}{The name of any method used in 'vegdist' to calculate pairwise distances.}
+  \item{by}{by = NULL will assess the overall significance of all terms together, by = "terms" will assess significance for each term (sequentially from first to last), setting by = "margin" will assess the marginal effects of the terms (each marginal term analysed in a model with all other variables), by = "onedf" will analyse one-degree-of-freedom contrasts sequentially.}
   \item{x}{\code{adonis_pertables} object to plot.}
   \item{\dots}{Additional graphical parameters passed to plot.}
 }
@@ -31,17 +32,16 @@ adonis_pertables(formula = X ~ ., data, permutations = 5, method = "bray")
 The objects of class \code{adonis_pertables} have  \code{print} and \code{plot} S3 methods for a simple access to results. See the examples. 
 }
 \references{
-Cayuela, L., De la Cruz, M. and Ruokolainen, K. (2011). A method to incorporate the effect of taxonomic uncertainty on multivariate analyses of ecological data. \emph{Ecography}, 34: 94-102. \url{http://dx.doi.org/10.1111/j.1600-0587.2009.05899.x}.   
+Cayuela, L., De la Cruz, M. and Ruokolainen, K. (2011). A method to incorporate the effect of taxonomic uncertainty on multivariate analyses of ecological data. \emph{Ecography}, 34: 94-102. \doi{10.1111/j.1600-0587.2009.05899.x}.
 }
 \author{
 Luis Cayuela and Marcelino de la Cruz
 }
 
-\seealso{\code{pertables}, \code{\link[vegan]{adonis}}}
+\seealso{\code{pertables}, \code{\link[vegan]{adonis2}}}
 
 \examples{
  
-
 
 data(Amazonia)
 data(soils)
@@ -58,7 +58,7 @@ Amazonia100 <- pertables(Amazonia, index=index.Amazon, nsim=100)
 
 # Assess the effects of taxonomic uncertainty on a PERMANOVA (i.e., adonis) test:
 
-Amazonia.adonis <- adonis_pertables(Amazonia100 ~ Ca + K + Mg + Na, data=soils)
+Amazonia.adonis <- adonis_pertables(Amazonia100 ~ Ca + K + Mg + Na, data=soils, by="terms")
 
 Amazonia.adonis
 
@@ -68,7 +68,7 @@ plot(Amazonia.adonis)
 
 Amazonia4.p2 <- pertables.p2(Amazonia[1:50,], index=index.Amazon, nsim=4, ncl=2, iseed=4)
 set.seed(2)
-Amazonia.adonis <- adonis_pertables(Amazonia4.p2  ~ Ca + K + Mg + Na, data=soils)
+Amazonia.adonis <- adonis_pertables(Amazonia4.p2  ~ Ca + K + Mg + Na, data=soils, by="terms")
 
 Amazonia.adonis
 

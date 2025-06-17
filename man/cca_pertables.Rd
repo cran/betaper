@@ -45,7 +45,7 @@ The objects of class \code{cca_pertables} have \code{print} and \code{plot} S3 m
 
 }
 \references{
-Cayuela, L., De la Cruz, M. and Ruokolainen, K. (2011). A method to incorporate the effect of taxonomic uncertainty on multivariate analyses of ecological data. \emph{Ecography}, 34: 94-102. \url{http://dx.doi.org/10.1111/j.1600-0587.2009.05899.x}.   
+Cayuela, L., De la Cruz, M. and Ruokolainen, K. (2011). A method to incorporate the effect of taxonomic uncertainty on multivariate analyses of ecological data. \emph{Ecography}, 34: 94-102. \doi{10.1111/j.1600-0587.2009.05899.x}.   
 }
 \author{
 Luis Cayuela and Marcelino de la Cruz
